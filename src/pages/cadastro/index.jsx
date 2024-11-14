@@ -1,5 +1,5 @@
 import { useNavigate  } from "react-router-dom";
-import { MdEmail, MdLock } from 'react-icons/md'
+import { MdEmail, MdLock, MdOutlineDriveFileRenameOutline } from 'react-icons/md'
 import { Button } from '../../components/Button';
 import { Header } from '../../components/Header';
 import { Input } from '../../components/Input';
@@ -10,7 +10,7 @@ import { useForm } from "react-hook-form";
 
 import { Container, Title, Column, TitleLogin, SubtitleLogin, EsqueciText, CriarText, Row, Wrapper } from './styles';
 
-const Login = () => {
+const Cadastro = () => {
 
     const navigate = useNavigate()
 
@@ -34,9 +34,8 @@ const Login = () => {
         }
     };
 
-    // Função para redirecionar para a página de cadastro
-    const handleNavigateToCadastro = () => {
-        navigate('/cadastro'); // Substitua '/cadastro' pela rota correta da sua página de cadastro
+    const handleNavigatelogin = () => {
+        navigate('/login'); // Substitua '/cadastro' pela rota correta da sua página de cadastro
     };
 
     console.log('errors', errors);
@@ -50,18 +49,20 @@ const Login = () => {
             </Column>
             <Column>
                 <Wrapper>
-                <TitleLogin>Realize o seu login</TitleLogin>
-                <SubtitleLogin>Faça seu login e make the change._</SubtitleLogin>
+                <TitleLogin>Faça seu cadastro</TitleLogin>
+                <SubtitleLogin>Crie sua conta e make the change._</SubtitleLogin>
                 <form onSubmit={handleSubmit(onSubmit)}>
+                    <Input placeholder="Nome" leftIcon={<MdOutlineDriveFileRenameOutline />} name="name"  control={control} />
+                    {errors.name && <span>Nome é obrigatório</span>}
                     <Input placeholder="E-mail" leftIcon={<MdEmail />} name="email"  control={control} />
                     {errors.email && <span>E-mail é obrigatório</span>}
                     <Input type="password" placeholder="Senha" leftIcon={<MdLock />}  name="senha" control={control} />
                     {errors.senha && <span>Senha é obrigatório</span>}
-                    <Button title="Entrar" variant="secondary" type="submit"/>
+                    <Button title="Cadastrar" variant="secondary" type="submit"/>
                 </form>
                 <Row>
                     <EsqueciText>Esqueci minha senha</EsqueciText>
-                    <CriarText onClick={handleNavigateToCadastro}>Criar Conta</CriarText>
+                    <CriarText onClick={handleNavigatelogin}>Acessar conta</CriarText>
                 </Row>
                 </Wrapper>
             </Column>
@@ -69,4 +70,4 @@ const Login = () => {
     </>)
 }
 
-export { Login }
+export { Cadastro }
